@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WEB PAYMENT BOMZZ KECE 👻</title>
+  <meta name="theme-color" content="#111827" />
+  <meta name="description" content="Wellcome to Web Payment BOMZZ. Kalau sudah TF kirim bukti SS." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg1:#0f172a;
+      --bg2:#111827;
+      --accent:#22d3ee;
+      --accent2:#a78bfa;
+      --card:#0b1022cc;
+      --ring: #22d3ee99;
+      --text:#e5e7eb;
+      --muted:#9ca3af;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+      color:var(--text);
+      background: var(--bg1);
+      background-attachment: fixed;
+      overflow-x:hidden;
+      transition: background-image 0.6s ease-in-out;
+      background-size:cover;
+      background-position:center;
+    }
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(15,23,42,0.8), rgba(17,24,39,0.85));
+      pointer-events: none;
+    }
+    .noise{position:fixed;inset:0;pointer-events:none;opacity:.07;background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%22160%22 viewBox=%220 0 160 160%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.75%22 numOctaves=%222%22 stitchTiles=%22stitch%22/></filter><rect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/></svg>');mix-blend-mode:overlay}
+    header{max-width:1100px;margin:0 auto;padding:28px 20px 10px;display:flex;gap:14px;align-items:center;justify-content:space-between;position:relative;z-index:5}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:42px;height:42px;border-radius:12px;background:conic-gradient(from 0deg,#22d3ee,#a78bfa,#22d3ee);box-shadow:0 0 40px #22d3ee44;display:grid;place-items:center;color:#0b1022;font-weight:800}
+    .title{font-size:clamp(18px,3vw,26px);font-weight:800;letter-spacing:.3px}
+    .subtitle{font-size:12px;color:var(--muted)}
+    .wrap{max-width:1100px;margin:0 auto;padding:10px 20px 64px;position:relative;z-index:5}
+    .hero{position:relative;overflow:hidden;border-radius:22px;padding:28px;border:1px solid #ffffff14;background:linear-gradient(180deg, #0b1022cc, #0b102288);backdrop-filter: blur(10px);box-shadow:0 10px 30px #00000066}
+    .hero h1{margin:0;font-size:clamp(26px,5vw,40px);line-height:1.1}
+    .hero p{margin:10px 0 0;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:24px}
+    .card{grid-column:span 12;background:var(--card);border:1px solid #ffffff1a;border-radius:20px;padding:20px;backdrop-filter: blur(8px);box-shadow:0 6px 20px #00000055}
+    @media(min-width:760px){.card.half{grid-column:span 6}}
+    .card h2{margin:0 0 6px;font-size:clamp(18px,3vw,22px)}
+    .muted{color:var(--muted)}
+    .paybox{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:12px}
+    .badge{font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid #ffffff22;background:#0e172acc}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
+    .btn{--_glow:0 0 12px var(--ring),0 0 32px #a78bfa55;appearance:none;border:0;cursor:pointer;border-radius:16px;padding:12px 18px;font-weight:700;letter-spacing:.2px;z-index:5;position:relative}
+    .btn.primary{position:relative;background:linear-gradient(90deg,#22d3ee,#a78bfa);color:#0b1022;box-shadow:var(--_glow)}
+    .btn.primary:after{content:"";position:absolute;inset:0;border-radius:inherit;border:2px solid transparent;background:linear-gradient(#0000,#0000) padding-box,conic-gradient(#22d3ee,#a78bfa,#22d3ee) border-box;filter:blur(6px);opacity:.35}
+    .btn.ghost{background:#0b1022;padding:10px 14px;border:1px solid #ffffff2a;color:#e5e7eb}
+    .keterangan{font-size:13px;margin-top:8px;color:var(--muted)}
+    .list{display:grid;gap:10px;margin-top:4px}
+    .list .item{display:flex;align-items:center;gap:10px}
+    .dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(90deg,#22d3ee,#a78bfa);box-shadow:0 0 12px #22d3ee88}
+    footer{margin-top:28px;text-align:center;color:#94a3b8;font-size:12px;position:relative;z-index:5}
+    .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(20px);opacity:0;transition:.3s;padding:10px 14px;border-radius:12px;background:#0b1022;border:1px solid #22d3ee44;box-shadow:0 10px 30px #00000066;z-index:10}
+    .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+    .divider{height:1px;background:linear-gradient(90deg,#0000,#ffffff22,#0000);margin:16px 0}
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header>
+    <div class="brand">
+      <div class="logo">💥</div>
+      <div>
+        <div class="title">BOMZZ KECE 👻</div>
+        <div class="subtitle">Web Payment — clean, fast, kece</div>
+      </div>
+    </div>
+    <button class="btn ghost" id="btnKirim">Kirim Bukti SS</button>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>WELLCOME TO WEB PAYMENT BOMZZ</h1>
+      <p>Kalau sudah TF kirim bukti SS.</p>
+      <div class="keterangan">Gunakan tombol <strong>Copy</strong> untuk menyalin nomor. Pastikan nama penerima cocok sebelum transfer.</div>
+    </section>
+
+    <div class="grid">
+      <!-- DANA -->
+      <article class="card half" id="card-dana">
+        <h2>DANA</h2>
+        <div class="muted">Nama: <strong>to tzy</strong></div>
+        <div class="paybox">
+          <span class="badge mono" id="num-dana">083819237425</span>
+          <button class="btn primary" data-copy="#num-dana">Copy</button>
+          <button class="btn ghost" data-app="dana">Buka Aplikasi</button>
+        </div>
+        <div class="keterangan">Nomor DANA aktif. Jika tidak bisa, coba ulangi beberapa saat.</div>
+      </article>
+
+      <!-- GOPAY -->
+      <article class="card half" id="card-gopay">
+        <h2>GoPay</h2>
+        <div class="muted">Nama: <strong>bocil beban</strong></div>
+        <div class="paybox">
+          <span class="badge mono" id="num-gopay">082188289728</span>
+          <button class="btn primary" data-copy="#num-gopay">Copy</button>
+          <button class="btn ghost" data-app="gopay">Buka Aplikasi</button>
+        </div>
+        <div class="keterangan">Pastikan nama penerima sesuai sebelum konfirmasi.</div>
+      </article>
+
+      <!-- TQTO -->
+      <article class="card" id="card-tqto">
+        <h2>💎 TQTO (Thanks To)</h2>
+        <div class="list">
+          <div class="item"><span class="dot"></span> <span><strong>BOMZZ KECE 👻</strong> — OWNER WEB</span></div>
+          <div class="item"><span class="dot"></span> <span><strong>OLINE JKT48</strong> — ayang bomzz</span></div>
+          <div class="item"><span class="dot"></span> <span><strong>CHATGPT</strong> — BABU BOMZ</span></div>
+        </div>
+      </article>
+
+      <!-- Catatan -->
+      <article class="card" id="card-info">
+        <h2>Catatan & Tata Cara</h2>
+        <ol class="muted">
+          <li>Tap <strong>Copy</strong> lalu tempel nomor di aplikasi pembayaran.</li>
+          <li>Transfer sesuai nominal yang diminta.</li>
+          <li>Tekan <strong>Kirim Bukti SS</strong> untuk mengirim bukti pembayaran.</li>
+        </ol>
+        <div class="divider"></div>
+        <button class="btn primary" id="btnBomz">BOMZZ BUTTON ⚡</button>
+        <div class="keterangan">Pencet biar makin kece ✨</div>
+      </article>
+    </div>
+
+    <footer>
+      © <span id="year"></span> BOMZZ KECE 👻 — All vibes reserved.
+    </footer>
+  </main>
+
+  <div class="toast" id="toast">Disalin ke clipboard!</div>
+
+  <script>
+    // Tahun dinamis
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Daftar background
+    const backgrounds = [
+      "https://files.catbox.moe/0jbrk7.jpg",
+      "https://files.catbox.moe/bxxozl.png",
+      "https://files.catbox.moe/18tgxt.jpg",
+      "https://files.catbox.moe/aeoufh.png",
+      "https://files.catbox.moe/4ti8ja.jpg",
+      "https://files.catbox.moe/zrc4zc.png",
+      "https://files.catbox.moe/vls9oy.jpg"
+    ];
+
+    function changeBackground() {
+      const img = backgrounds[Math.floor(Math.random()*backgrounds.length)];
+      document.body.style.backgroundImage = `url('${img}')`;
+    }
+
+    // Toast
+    function showToast(msg="Disalin ke clipboard!") {
+      const toast=document.getElementById("toast");
+      toast.textContent=msg;
+      toast.classList.add("show");
+      setTimeout(()=>toast.classList.remove("show"),2500);
+    }
+
+    // Copy nomor
+    document.querySelectorAll("[data-copy]").forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        const target=document.querySelector(btn.dataset.copy);
+        if(target){
+          navigator.clipboard.writeText(target.textContent).then(()=>{
+            showToast("Nomor berhasil disalin!");
+            changeBackground();
+          });
+        }
+      });
+    });
+
+    // Buka aplikasi pembayaran
+    document.querySelectorAll("[data-app]").forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        const app=btn.dataset.app;
+        if(app==="dana"){window.location.href="dana://";}
+        else if(app==="gopay"){window.location.href="gopay://";}
+        showToast("Membuka aplikasi "+app);
+        changeBackground();
+      });
+    });
+
+    // BOMZZ BUTTON
+    document.getElementById("btnBomz").addEventListener("click",()=>{
+      showToast("⚡ BOMZZ KECE BANGET! 👻");
+      changeBackground();
+    });
+
+    // Kirim Bukti SS ke WhatsApp
+    document.getElementById("btnKirim").addEventListener("click",()=>{
+      window.open("https://wa.me/6283819237425?text=Halo%20kak%2C%20saya%20sudah%20transfer.%20Berikut%20bukti%20SS%20saya.","_blank");
+      changeBackground();
+    });
+  </script>
+</body>
+</html>
